@@ -1,0 +1,17 @@
+CRM COMERCIAL LEVEL UP
+
+COMO PUBLICAR
+1. Crie uma pasta chamada crm na raiz do projeto do site.
+2. Copie index.php e .htaccess para dentro dessa pasta.
+3. Faça commit e push.
+4. Acesse: https://mktlevelup.com.br/crm/
+
+CREDENCIAIS
+Usuário: diego
+Senha: a senha definida na conversa.
+
+IMPORTANTE
+- O login é processado pelo servidor PHP.
+- A senha não está salva em texto aberto no código.
+- Os leads ainda ficam salvos no navegador utilizado.
+- Exporte backups frequentemente.
