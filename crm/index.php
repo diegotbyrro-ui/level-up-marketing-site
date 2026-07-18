@@ -172,6 +172,7 @@ textarea{min-height:105px;resize:vertical}
     <a class="btn danger" href="?logout=1">Sair</a>
     <button class="btn" id="exportBtn">Exportar backup</button>
     <button class="btn" id="importBtn">Importar</button>
+    <button class="btn" id="assistantBtn">Assistente IA</button>
     <input type="file" id="importFile" accept=".json" hidden>
     <button class="btn primary" id="newLeadBtn">+ Novo lead</button>
   </div>
@@ -274,6 +275,25 @@ textarea{min-height:105px;resize:vertical}
       <button class="btn primary" type="submit">Salvar lead</button>
     </div>
   </form>
+</dialog>
+
+
+<dialog id="importDialog">
+  <div class="modal-head"><h2>Importar leads</h2><button class="close" type="button" id="closeImportDialog">×</button></div>
+  <div style="padding:22px">
+    <div class="notice">Escolha como o arquivo deve ser importado. A opção recomendada é adicionar e mesclar, pois mantém os leads que já estão no CRM.</div>
+    <div class="form-section"><h3>Adicionar e mesclar</h3><p>Adiciona empresas novas, atualiza duplicadas quando houver mais informações e preserva toda a base atual.</p><button class="btn primary" id="mergeImportBtn" type="button">Adicionar sem apagar</button></div>
+    <div class="form-section"><h3>Restaurar backup completo</h3><p>Substitui toda a base atual. Use apenas quando quiser restaurar um backup.</p><button class="btn danger" id="replaceImportBtn" type="button">Substituir toda a base</button></div>
+  </div>
+</dialog>
+
+<dialog id="assistantDialog">
+  <div class="modal-head"><h2>Assistente comercial da Level Up</h2><button class="close" type="button" id="closeAssistantDialog">×</button></div>
+  <div style="padding:22px">
+    <div class="notice">Esta área será conectada à API da OpenAI pelo servidor. Seus leads continuarão protegidos e a chave da API não ficará exposta no navegador.</div>
+    <section class="form-section"><h3>Comando</h3><textarea id="assistantPrompt" placeholder="Ex.: Pesquise 10 clínicas odontológicas de Maceió com potencial para contratar a Level Up."></textarea><div style="display:flex;gap:10px;justify-content:flex-end;margin-top:12px"><button class="btn primary" id="runAssistantBtn" type="button">Pesquisar e preparar leads</button></div></section>
+    <section class="form-section"><h3>Resultado</h3><div id="assistantResult" class="empty">O módulo está preparado. Para ativá-lo, configure a API da OpenAI no servidor.</div></section>
+  </div>
 </dialog>
 
 <div class="toast" id="toast"></div>
@@ -609,22 +629,50 @@ $("#exportBtn").onclick=()=>{
   URL.revokeObjectURL(a.href);
 };
 
-$("#importBtn").onclick=()=>$("#importFile").click();
+let pendingImportMode = "merge";
+
+$("#importBtn").onclick=()=>$("#importDialog").showModal();
+$("#closeImportDialog").onclick=()=>$("#importDialog").close();
+$("#mergeImportBtn").onclick=()=>{pendingImportMode="merge";$("#importDialog").close();$("#importFile").click();};
+$("#replaceImportBtn").onclick=()=>{pendingImportMode="replace";$("#importDialog").close();$("#importFile").click();};
+
+function leadIdentity(l){
+  const company=norm(l.company).replace(/[^a-z0-9]/g,"");
+  const phone=String(l.phone||l.decisionPhone||"").replace(/\D/g,"");
+  const instagram=norm(l.instagram).replace(/^https?:\/\/(www\.)?instagram\.com\//,"").replace(/^@/,"").replace(/[\/?#].*$/,"");
+  return {company,phone,instagram};
+}
+function findDuplicateIndex(candidate){
+  const c=leadIdentity(candidate);
+  return leads.findIndex(existing=>{const e=leadIdentity(existing);if(c.phone&&e.phone&&c.phone===e.phone)return true;if(c.instagram&&e.instagram&&c.instagram===e.instagram)return true;return Boolean(c.company&&e.company&&c.company===e.company);});
+}
+function mergeLead(existing,incoming){
+  const merged={...existing};
+  Object.keys(incoming).forEach(key=>{const value=incoming[key];const empty=value===""||value===null||value===undefined||(Array.isArray(value)&&value.length===0)||(typeof value==="number"&&value===0);if(!empty)merged[key]=value;});
+  merged.id=existing.id;merged.createdAt=existing.createdAt;merged.history=[...(existing.history||[])];addHistory(merged,"Dados complementados por importação");merged.updatedAt=new Date().toISOString();return migrateLead(merged);
+}
 
 $("#importFile").onchange=async e=>{
   try{
     const parsed=JSON.parse(await e.target.files[0].text());
-    const incoming=Array.isArray(parsed)?parsed:parsed.leads;
-    if(!Array.isArray(incoming))throw new Error();
-    if(!confirm(`Importar ${incoming.length} leads e substituir os dados atuais?`))return;
-    leads=incoming.map(migrateLead);
-    save();
-    toast("Backup importado com sucesso");
-  }catch(err){
-    alert("Arquivo inválido. Use um backup JSON exportado pelo CRM.");
-  }finally{
-    e.target.value="";
-  }
+    const incomingRaw=Array.isArray(parsed)?parsed:parsed.leads;
+    if(!Array.isArray(incomingRaw))throw new Error();
+    const incoming=incomingRaw.map(migrateLead);
+    if(pendingImportMode==="replace"){if(!confirm(`Substituir toda a base atual por ${incoming.length} leads?`))return;leads=incoming;save();toast("Base restaurada com sucesso");return;}
+    let added=0,updated=0;
+    incoming.forEach(candidate=>{const index=findDuplicateIndex(candidate);if(index>=0){leads[index]=mergeLead(leads[index],candidate);updated++;}else{addHistory(candidate,"Lead adicionado por importação");leads.unshift(candidate);added++;}});
+    save();toast(`${added} novos leads e ${updated} atualizados`);
+  }catch(err){alert("Arquivo inválido. Use um JSON compatível com o CRM.");}
+  finally{e.target.value="";}
+};
+
+$("#assistantBtn").onclick=()=>$("#assistantDialog").showModal();
+$("#closeAssistantDialog").onclick=()=>$("#assistantDialog").close();
+$("#runAssistantBtn").onclick=async()=>{
+  const prompt=$("#assistantPrompt").value.trim();if(!prompt){alert("Digite o que você deseja pesquisar.");return;}
+  const result=$("#assistantResult");result.className="";result.innerHTML="<p>Verificando a conexão segura com o assistente...</p>";
+  try{const response=await fetch("./ai.php",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({prompt})});const data=await response.json();if(!response.ok||!data.ok)throw new Error(data.error||"Não foi possível executar a pesquisa.");result.innerHTML=`<div class="notice">${escapeHtml(data.message||"Pesquisa concluída.")}</div>`;}
+  catch(err){result.innerHTML=`<div class="error">${escapeHtml(err.message)}</div><p style="color:var(--muted)">A estrutura já está instalada. Falta configurar a chave da API da OpenAI no servidor.</p>`;}
 };
 
 seedStages();
