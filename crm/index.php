@@ -122,8 +122,8 @@ a{color:inherit}
 .toolbar{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr auto;gap:12px;background:rgba(13,24,40,.94);border:1px solid var(--line);padding:14px;border-radius:18px;margin-bottom:20px}
 input,select,textarea{width:100%;border:1px solid var(--line);background:#091421;color:var(--text);border-radius:11px;padding:11px 12px;outline:none}
 input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(54,127,255,.12)}
-.pipeline{display:grid;grid-template-columns:repeat(7,minmax(260px,1fr));gap:14px;overflow-x:auto;padding-bottom:12px}
-.column{background:rgba(13,24,40,.85);border:1px solid var(--line);border-radius:18px;min-height:470px;padding:12px;transition:.2s}
+.pipeline{display:grid;grid-template-columns:repeat(7,minmax(260px,1fr));gap:14px;overflow:auto;padding:0 0 12px;max-height:calc(100vh - 350px);min-height:430px;scrollbar-gutter:stable;overscroll-behavior:contain;cursor:grab;user-select:none;position:relative}.pipeline.panning{cursor:grabbing;scroll-behavior:auto}.pipeline::-webkit-scrollbar{height:14px;width:12px}.pipeline::-webkit-scrollbar-track{background:#07101d;border-radius:999px}.pipeline::-webkit-scrollbar-thumb{background:#748399;border-radius:999px;border:3px solid #07101d}.pipeline::-webkit-scrollbar-thumb:hover{background:#9aa8ba}
+.column{background:rgba(13,24,40,.85);border:1px solid var(--line);border-radius:18px;min-height:470px;padding:12px;transition:.2s;align-self:start}.column-head{position:sticky;top:0;z-index:3;background:rgba(13,24,40,.97);border-radius:12px}
 .column.drag-over{border-color:var(--blue);box-shadow:0 0 0 3px rgba(54,127,255,.14) inset}
 .column-head{display:flex;justify-content:space-between;align-items:center;padding:6px 4px 13px}
 .column-head h2{font-size:13px;margin:0;text-transform:uppercase;letter-spacing:.06em}.count{background:#172a43;color:#bcd0e8;border-radius:999px;padding:3px 8px;font-size:11px}
@@ -463,8 +463,65 @@ function card(l){
 
 function bindCards(){
   document.querySelectorAll(".card").forEach(el=>{
-    el.addEventListener("dragstart",()=>{draggedId=el.dataset.id;el.classList.add("dragging")});
-    el.addEventListener("dragend",()=>{draggedId=null;el.classList.remove("dragging");document.querySelectorAll(".column").forEach(c=>c.classList.remove("drag-over"))});
+    el.addEventListener("dragstart",e=>{
+      draggedId=el.dataset.id;
+      el.classList.add("dragging");
+      if(e.dataTransfer){
+        e.dataTransfer.effectAllowed="move";
+        e.dataTransfer.setData("text/plain",draggedId);
+      }
+    });
+    el.addEventListener("dragend",()=>{
+      draggedId=null;
+      el.classList.remove("dragging");
+      document.querySelectorAll(".column").forEach(c=>c.classList.remove("drag-over"));
+    });
+  });
+}
+
+function enablePipelineNavigation(){
+  const pipeline=$("#pipeline");
+  let panning=false,startX=0,startY=0,startLeft=0,startTop=0;
+
+  pipeline.addEventListener("mousedown",e=>{
+    if(e.button!==0) return;
+    if(e.target.closest(".card,button,a,input,select,textarea")) return;
+    panning=true;
+    startX=e.clientX; startY=e.clientY;
+    startLeft=pipeline.scrollLeft; startTop=pipeline.scrollTop;
+    pipeline.classList.add("panning");
+    e.preventDefault();
+  });
+
+  window.addEventListener("mousemove",e=>{
+    if(!panning) return;
+    pipeline.scrollLeft=startLeft-(e.clientX-startX);
+    pipeline.scrollTop=startTop-(e.clientY-startY);
+  });
+
+  window.addEventListener("mouseup",()=>{
+    panning=false;
+    pipeline.classList.remove("panning");
+  });
+
+  pipeline.addEventListener("wheel",e=>{
+    if(Math.abs(e.deltaY)>Math.abs(e.deltaX) && !e.shiftKey){
+      if(pipeline.scrollWidth>pipeline.clientWidth){
+        pipeline.scrollLeft+=e.deltaY;
+        e.preventDefault();
+      }
+    }
+  },{passive:false});
+
+  pipeline.addEventListener("dragover",e=>{
+    if(!draggedId) return;
+    const rect=pipeline.getBoundingClientRect();
+    const edge=85;
+    const speed=18;
+    if(e.clientX<rect.left+edge) pipeline.scrollLeft-=speed;
+    else if(e.clientX>rect.right-edge) pipeline.scrollLeft+=speed;
+    if(e.clientY<rect.top+edge) pipeline.scrollTop-=speed;
+    else if(e.clientY>rect.bottom-edge) pipeline.scrollTop+=speed;
   });
 }
 
@@ -676,6 +733,7 @@ $("#runAssistantBtn").onclick=async()=>{
 };
 
 seedStages();
+enablePipelineNavigation();
 save();
 </script>
 </body>
