@@ -100,3 +100,45 @@
 .testimonial-featured{align-items:stretch;}
 .testimonial-video{display:block;}
 .testimonial-card{display:block;}
+
+
+/* LEVEL UP LOGIN BUTTON START */
+
+.nav-login {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 18px;
+  border: 1px solid rgba(74, 132, 255, 0.55);
+  border-radius: 999px;
+  background: rgba(18, 99, 255, 0.1);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.nav-login:hover {
+  transform: translateY(-1px);
+  border-color: rgba(74, 132, 255, 0.9);
+  background: linear-gradient(135deg, #1263ff, #244eea);
+  color: #ffffff;
+  box-shadow: 0 10px 26px rgba(18, 99, 255, 0.25);
+}
+
+@media (max-width: 900px) {
+  .nav-login {
+    width: 100%;
+    min-height: 48px;
+    margin-top: 8px;
+  }
+}
+
+/* LEVEL UP LOGIN BUTTON END */
