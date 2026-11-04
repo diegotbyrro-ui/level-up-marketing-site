@@ -1,0 +1,16 @@
+LEVEL UP MARKETING — LANDING PAGE IMOBILIÁRIAS V8
+
+O site usa a logomarca oficial enviada neste chat, sem redesenho.
+
+PUBLICAÇÃO COMO SUBPÁGINA NO DOMÍNIO PRINCIPAL
+Copie o conteúdo desta pasta (index.html, styles.css, script.js, assets/) para uma nova pasta
+  public_html/imobiliarias/
+na hospedagem do domínio mktlevelup.com.br (ou diretório web equivalente).
+Não substitua o index.html da raiz, pois isso sobrescreveria o site institucional.
+A URL pretendida, depois do upload e configuração do servidor, será:
+  https://mktlevelup.com.br/imobiliarias/
+
+IMPORTANTE: o formulário de agendamento ainda é demonstrativo e não envia leads.
+É preciso conectar ao WhatsApp, e-mail ou CRM antes de campanhas pagas.
+Há uma fotografia principal carregada do Pexels via internet, com fallback local.
+Os demais arquivos de imóvel genérico e o carrossel são locais.

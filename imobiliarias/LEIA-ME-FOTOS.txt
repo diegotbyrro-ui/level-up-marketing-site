@@ -1,0 +1,13 @@
+LEVEL UP IMOBILIARIAS — V6 FOTOS HD
+
+Foram trocadas as 3 fotografias: hero, casa com piscina, carrossel de resultados.
+Fotografias em alta resolucao via Pexels (licenca gratuita), utilizadas por URL remota:
+https://images.pexels.com/photos/36729940/pexels-photo-36729940.jpeg?auto=compress&cs=tinysrgb&w=2400&q=90
+https://images.pexels.com/photos/36394726/pexels-photo-36394726.jpeg?auto=compress&cs=tinysrgb&w=2400&q=90
+https://images.pexels.com/photos/29515355/pexels-photo-29515355.jpeg?auto=compress&cs=tinysrgb&w=2400&q=90
+https://images.pexels.com/photos/7045919/pexels-photo-7045919.jpeg?auto=compress&cs=tinysrgb&w=2400&q=90
+https://images.pexels.com/photos/34277650/pexels-photo-34277650.jpeg?auto=compress&cs=tinysrgb&w=2400&q=90
+
+O HTML funciona localmente. Com internet o Chrome exibe fotos HD; sem internet exibe imagens de reserva locais, de resolucao menor em alguns casos.
+Nao sao fotos de clientes nem de empreendimentos atendidos pela Level UP.
+Layout, agendamento interativo e CRM ilustrativo da V5 mantidos.

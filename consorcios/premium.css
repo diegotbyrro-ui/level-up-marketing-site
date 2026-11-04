@@ -1,0 +1,125 @@
+/* Level UP Premium • microinterações leves, sem mudanças de copy ou estrutura */
+:root{--lu-motion-duration:650ms;--lu-ease:cubic-bezier(.2,.7,.25,1)}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img{image-rendering:auto;object-fit:cover}
+svg{shape-rendering:geometricPrecision}
+.lu-icon{display:inline-block;width:19px;height:19px;min-width:19px;vertical-align:middle;stroke:currentColor;transition:transform .28s var(--lu-ease),opacity .25s ease;flex:0 0 19px}
+.lu-whatsapp{width:20px;height:20px;min-width:20px;flex-basis:20px}
+button,a{-webkit-tap-highlight-color:transparent}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible,.art-hotspot:focus-visible{outline:3px solid #3282ff;outline-offset:3px}
+.site-header,.header{transition:box-shadow .32s ease,background-color .32s ease;z-index:70}
+body.lu-scrolled .site-header,body.lu-scrolled .header:not(.header-overlay){box-shadow:0 9px 24px rgba(7,28,44,.10)}
+/* Buttons remain crisp; movement is confined to the interactive surface */
+.button,.btn,.booking-next,.booking-back,.nav-cta,button[type=submit]{position:relative;isolation:isolate;will-change:auto;transition:transform .28s var(--lu-ease),box-shadow .28s ease,background-color .28s ease,filter .28s ease}
+.button:hover,.btn:hover,.booking-next:hover,.booking-back:hover,button[type=submit]:hover{transform:translateY(-3px);box-shadow:0 13px 25px rgba(8,42,74,.15);filter:saturate(1.07)}
+.button:active,.btn:active,.booking-next:active,.booking-back:active{transform:translateY(0) scale(.985)}
+.button:hover .lu-arrow,.btn:hover .lu-arrow,.booking-next:hover .lu-arrow{transform:translateX(4px)}
+.button:hover .lu-whatsapp,.btn:hover .lu-whatsapp{transform:scale(1.1) rotate(-7deg)}
+/* Section panels and photographs */
+.service-card,.solution-card,.step,.issue,.case-proof,.crm-screen,.crm-showcase,.booking-panel,.faq details,.school-service-grid article{transition:transform .37s var(--lu-ease),box-shadow .37s ease,border-color .37s ease,background-color .37s ease}
+@media(hover:hover) and (pointer:fine){
+ .service-card:hover,.solution-card:hover,.step:hover,.issue:hover,.school-service-grid article:hover{transform:translateY(-5px);box-shadow:0 18px 32px rgba(10,39,72,.10)}
+ .booking-panel:hover{box-shadow:0 24px 55px rgba(0,12,35,.15)}
+ .hero-main img,.hero-side img,.house-photo img,.case-photo img,.hero-media img,.hero-image,.crm-screen img{transition:transform 750ms var(--lu-ease),filter 450ms ease}
+ .hero-main:hover img,.hero-side:hover img,.house-photo:hover img,.case-photo:hover img,.hero-media:hover img,.crm-screen:hover img{transform:scale(1.022);filter:saturate(1.07)}
+}
+.hero-main,.hero-side,.house-photo,.case-photo,.crm-screen,.hero-media{overflow:hidden}
+/* Accents improve visual depth without replacing artwork */
+.benefits,.school-benefits{position:relative;z-index:1}
+.booking-section{position:relative;overflow:hidden}
+.booking-section:before{content:"";position:absolute;pointer-events:none;width:min(48vw,590px);height:min(48vw,590px);border-radius:50%;background:radial-gradient(circle,rgba(47,116,240,.13),transparent 69%);left:-20vw;bottom:-28%;animation:lu-breathe 12s ease-in-out infinite alternate}
+.booking-section>*{position:relative;z-index:1}
+/* Progressive enhancement: hide only with JS and motion allowed. */
+@media(prefers-reduced-motion:no-preference){
+ body.lu-motion-ready .lu-reveal{opacity:0;transform:translate3d(0,24px,0);transition:opacity var(--lu-motion-duration) ease,transform var(--lu-motion-duration) var(--lu-ease);transition-delay:var(--lu-delay,0ms)}
+ body.lu-motion-ready .lu-reveal.lu-visible{opacity:1;transform:translate3d(0,0,0)}
+}
+@keyframes lu-breathe{from{transform:translate3d(-4%,0,0) scale(.94)}to{transform:translate3d(7%,0,0) scale(1.07)}}
+/* Scroll indicator and back-to-top are accessible buttons */
+.lu-scroll-progress{position:fixed;top:0;left:0;right:0;height:3px;transform:scaleX(0);transform-origin:left center;z-index:999;background:linear-gradient(90deg,#0c55ed,#69caff,#ffcd50);pointer-events:none}
+.lu-back-to-top{position:fixed;right:22px;bottom:22px;width:48px;height:48px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.25);border-radius:50%;color:#fff;background:#0b3154;box-shadow:0 12px 26px rgba(3,24,44,.25);cursor:pointer;z-index:80;opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .3s ease,visibility .3s ease,transform .3s ease,background .3s ease}
+.lu-back-to-top svg{width:20px;height:20px}
+.lu-back-to-top.is-visible{opacity:1;visibility:visible;transform:translateY(0)}
+.lu-back-to-top:hover{background:#0b57e8;transform:translateY(-3px)}
+.lu-back-to-top:active{transform:scale(.95)}
+/* High-quality svg strokes, always aligned to a fixed box */
+.icon,.ico,.lineicon svg,.service-icon svg{shape-rendering:geometricPrecision;stroke-linecap:round;stroke-linejoin:round}
+.faq details[open] summary{color:#0b53be}
+.faq details:hover,.faq-items details:hover{background:rgba(45,116,208,.025)}
+@media(max-width:760px){.lu-back-to-top{width:42px;height:42px;right:14px;bottom:16px}.button:hover,.btn:hover,.booking-next:hover{box-shadow:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.lu-reveal{opacity:1!important;transform:none!important}}
+
+/* Corretoras / Incorporadoras: cartões arejados, sem ícones borrados */
+.hero-image{object-position:center center}
+.btn .lu-icon{width:19px;height:19px;flex:0 0 19px}
+.btn-yellow .lu-whatsapp{stroke-width:1.9}
+.solution-card p,.step p{font-size:14px}
+.solution-card h3{margin-top:20px}
+.step{border-radius:11px;border:1px solid #e5ebef;border-top:3px solid var(--yellow)}
+.issue:hover{border-color:#badce7}
+@media(min-width:860px){.hero-copy{font-size:15px}}
+
+
+/* ===== Level UP Premium V4 • qualidade visual + microinterações mais visíveis ===== */
+:root{--lu-glow:0 18px 45px rgba(7,32,64,.12);--lu-blue:#0c55ed;--lu-deep:#072946;--lu-yellow:#ffcf50}
+body{background-attachment:fixed}
+img,.official-logo{backface-visibility:hidden;transform:translateZ(0);image-rendering:auto}
+.approved-art img,.hero-media img,.hero-main img,.hero-side img,.real-photo>img,.case-photo img,.contact-image img,.school-solution-photo img,.school-hero-image{filter:saturate(1.02) contrast(1.01)}
+/* Better icon polish */
+.lineicon,.service-icon,.benefits-grid>div>span:first-child,.benefits-row>div>svg,.benefits-row>div>.ico,.school-service-grid article>div:first-child,.school-test-grid>div>.ico{position:relative;display:inline-grid;place-items:center;isolation:isolate}
+.lineicon::after,.service-icon::after,.school-service-grid article>div:first-child::after,.school-test-grid>div>.ico::after{content:"";position:absolute;inset:-8px;border-radius:14px;background:linear-gradient(180deg,rgba(12,85,237,.08),rgba(12,85,237,.02));border:1px solid rgba(12,85,237,.08);z-index:-1;box-shadow:0 8px 18px rgba(12,85,237,.06)}
+.lineicon svg,.service-icon svg,.benefits-row .ico,.school-service-grid article .ico,.school-test-grid .ico{width:28px;height:28px;stroke-width:1.95}
+/* Top buttons and primary CTA */
+.btn,.button,.booking-next,.booking-back,button[type=submit]{overflow:hidden}
+.btn::before,.button::before,.booking-next::before{content:"";position:absolute;inset:auto;top:0;left:-130%;width:55%;height:100%;background:linear-gradient(110deg,transparent,rgba(255,255,255,.28),transparent);transform:skewX(-22deg);transition:left .68s ease}
+.btn:hover::before,.button:hover::before,.booking-next:hover::before{left:150%}
+.btn-primary,.btn-yellow,.booking-next{box-shadow:0 10px 24px rgba(16,76,181,.16)}
+.btn-primary:hover,.btn-yellow:hover,.booking-next:hover{box-shadow:0 16px 30px rgba(16,76,181,.22)}
+/* Stronger nav and menu motion */
+.nav-links a,.navlinks a{position:relative;transition:color .28s ease,opacity .28s ease,transform .28s ease}
+.nav-links a::after,.navlinks a::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:currentColor;transform:scaleX(0);transform-origin:left center;transition:transform .28s ease;opacity:.75}
+.nav-links a:hover,.navlinks a:hover{transform:translateY(-1px)}
+.nav-links a:hover::after,.navlinks a:hover::after,.nav-links a[aria-current="location"]::after,.navlinks a[aria-current="location"]::after{transform:scaleX(1)}
+/* Card polish */
+.service-card,.solution-card,.step,.issue,.case-proof,.crm-screen,.crm-showcase,.booking-panel,.faq details,.school-service-grid article,.benefits-grid>div,.benefits-row>div,.school-test-grid>div,.real-service-grid article,.case-card,.crm-metrics>div,.crm-col,.crm-ticket,.school-results-band>div{border-color:rgba(11,61,114,.08)!important;box-shadow:0 8px 18px rgba(8,28,54,.04)}
+@media(hover:hover) and (pointer:fine){
+  .benefits-grid>div:hover,.benefits-row>div:hover,.school-test-grid>div:hover,.real-service-grid article:hover,.case-card:hover,.crm-metrics>div:hover,.crm-col:hover,.crm-ticket:hover,.school-results-band>div:hover{transform:translateY(-5px);box-shadow:var(--lu-glow)}
+}
+/* Benefit rows become crisper mini-cards */
+.benefits-grid,.benefits-row{align-items:stretch}
+.benefits-grid>div,.benefits-row>div{background:rgba(255,255,255,.92);border:1px solid rgba(10,50,92,.08);border-radius:18px;padding:16px 18px;min-height:88px;transition:transform .35s var(--lu-ease),box-shadow .35s ease,border-color .35s ease;background-clip:padding-box}
+.real-benefits .benefits-row,.school-benefits .benefits-row,.benefits{border:none!important}
+.school-benefits{background:linear-gradient(180deg,#f7f9fc,#ffffff)}
+.school-benefits .benefits-row{grid-template-columns:repeat(4,1fr);gap:16px;padding:24px 0 28px}
+.school-benefits .benefits-row>div{justify-content:flex-start;align-items:center;border-right:0!important}
+.school-benefits .benefits-row b{font-size:15px;line-height:1.28}
+.school-benefits .benefits-row .ico{width:30px;height:30px}
+/* input/focus quality */
+input,select,textarea{transition:border-color .25s ease,box-shadow .25s ease,transform .25s ease,background-color .25s ease}
+input:hover,select:hover,textarea:hover{border-color:rgba(12,85,237,.25)}
+input:focus,select:focus,textarea:focus{transform:translateY(-1px);box-shadow:0 0 0 4px rgba(12,85,237,.10)}
+/* approved artwork polish */
+.approved-art{overflow:hidden}
+.approved-art img{width:100%;height:auto}
+.official-art-brand img,.official-logo{filter:drop-shadow(0 6px 12px rgba(3,16,35,.08))}
+/* icon floating motion */
+@media(prefers-reduced-motion:no-preference){
+  .lineicon svg,.service-icon svg,.benefits-row .ico,.school-service-grid article .ico,.school-test-grid .ico,.btn .ico,.lu-icon{animation:lu-float 4.2s ease-in-out infinite}
+  .benefits-row>div:nth-child(2) .ico,.benefits-grid>div:nth-child(2) .lineicon svg,.school-service-grid article:nth-child(2) .ico{animation-delay:.35s}
+  .benefits-row>div:nth-child(3) .ico,.benefits-grid>div:nth-child(3) .lineicon svg,.school-service-grid article:nth-child(3) .ico{animation-delay:.7s}
+  .benefits-row>div:nth-child(4) .ico,.school-service-grid article:nth-child(4) .ico{animation-delay:1.05s}
+}
+@keyframes lu-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+/* subtle pulse on prime CTA in header */
+@media(prefers-reduced-motion:no-preference){.nav>.btn,.site-header .btn-yellow{animation:lu-pulse 3.2s ease-in-out infinite}}
+@keyframes lu-pulse{0%,100%{box-shadow:0 10px 24px rgba(16,76,181,.14)}50%{box-shadow:0 14px 34px rgba(16,76,181,.24)}}
+/* better mobile fidelity */
+@media(max-width:900px){
+  .school-benefits .benefits-row{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:560px){
+  .benefits-grid>div,.benefits-row>div{border-radius:15px;padding:14px 14px;min-height:78px}
+  .school-benefits .benefits-row{gap:10px}
+  .school-benefits .benefits-row b{font-size:13px}
+}

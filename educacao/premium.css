@@ -1,0 +1,446 @@
+/* Level UP Premium • microinterações leves, sem mudanças de copy ou estrutura */
+:root{--lu-motion-duration:650ms;--lu-ease:cubic-bezier(.2,.7,.25,1)}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img{image-rendering:auto;object-fit:cover}
+svg{shape-rendering:geometricPrecision}
+.lu-icon{display:inline-block;width:19px;height:19px;min-width:19px;vertical-align:middle;stroke:currentColor;transition:transform .28s var(--lu-ease),opacity .25s ease;flex:0 0 19px}
+.lu-whatsapp{width:20px;height:20px;min-width:20px;flex-basis:20px}
+button,a{-webkit-tap-highlight-color:transparent}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible,.art-hotspot:focus-visible{outline:3px solid #3282ff;outline-offset:3px}
+.site-header,.header{transition:box-shadow .32s ease,background-color .32s ease;z-index:70}
+body.lu-scrolled .site-header,body.lu-scrolled .header:not(.header-overlay){box-shadow:0 9px 24px rgba(7,28,44,.10)}
+/* Buttons remain crisp; movement is confined to the interactive surface */
+.button,.btn,.booking-next,.booking-back,.nav-cta,button[type=submit]{position:relative;isolation:isolate;will-change:auto;transition:transform .28s var(--lu-ease),box-shadow .28s ease,background-color .28s ease,filter .28s ease}
+.button:hover,.btn:hover,.booking-next:hover,.booking-back:hover,button[type=submit]:hover{transform:translateY(-3px);box-shadow:0 13px 25px rgba(8,42,74,.15);filter:saturate(1.07)}
+.button:active,.btn:active,.booking-next:active,.booking-back:active{transform:translateY(0) scale(.985)}
+.button:hover .lu-arrow,.btn:hover .lu-arrow,.booking-next:hover .lu-arrow{transform:translateX(4px)}
+.button:hover .lu-whatsapp,.btn:hover .lu-whatsapp{transform:scale(1.1) rotate(-7deg)}
+/* Section panels and photographs */
+.service-card,.solution-card,.step,.issue,.case-proof,.crm-screen,.crm-showcase,.booking-panel,.faq details,.school-service-grid article{transition:transform .37s var(--lu-ease),box-shadow .37s ease,border-color .37s ease,background-color .37s ease}
+@media(hover:hover) and (pointer:fine){
+ .service-card:hover,.solution-card:hover,.step:hover,.issue:hover,.school-service-grid article:hover{transform:translateY(-5px);box-shadow:0 18px 32px rgba(10,39,72,.10)}
+ .booking-panel:hover{box-shadow:0 24px 55px rgba(0,12,35,.15)}
+ .hero-main img,.hero-side img,.house-photo img,.case-photo img,.hero-media img,.hero-image,.crm-screen img{transition:transform 750ms var(--lu-ease),filter 450ms ease}
+ .hero-main:hover img,.hero-side:hover img,.house-photo:hover img,.case-photo:hover img,.hero-media:hover img,.crm-screen:hover img{transform:scale(1.022);filter:saturate(1.07)}
+}
+.hero-main,.hero-side,.house-photo,.case-photo,.crm-screen,.hero-media{overflow:hidden}
+/* Accents improve visual depth without replacing artwork */
+.benefits,.school-benefits{position:relative;z-index:1}
+.booking-section{position:relative;overflow:hidden}
+.booking-section:before{content:"";position:absolute;pointer-events:none;width:min(48vw,590px);height:min(48vw,590px);border-radius:50%;background:radial-gradient(circle,rgba(47,116,240,.13),transparent 69%);left:-20vw;bottom:-28%;animation:lu-breathe 12s ease-in-out infinite alternate}
+.booking-section>*{position:relative;z-index:1}
+/* Progressive enhancement: hide only with JS and motion allowed. */
+@media(prefers-reduced-motion:no-preference){
+ body.lu-motion-ready .lu-reveal{opacity:0;transform:translate3d(0,24px,0);transition:opacity var(--lu-motion-duration) ease,transform var(--lu-motion-duration) var(--lu-ease);transition-delay:var(--lu-delay,0ms)}
+ body.lu-motion-ready .lu-reveal.lu-visible{opacity:1;transform:translate3d(0,0,0)}
+}
+@keyframes lu-breathe{from{transform:translate3d(-4%,0,0) scale(.94)}to{transform:translate3d(7%,0,0) scale(1.07)}}
+/* Scroll indicator and back-to-top are accessible buttons */
+.lu-scroll-progress{position:fixed;top:0;left:0;right:0;height:3px;transform:scaleX(0);transform-origin:left center;z-index:999;background:linear-gradient(90deg,#0c55ed,#69caff,#ffcd50);pointer-events:none}
+.lu-back-to-top{position:fixed;right:22px;bottom:22px;width:48px;height:48px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.25);border-radius:50%;color:#fff;background:#0b3154;box-shadow:0 12px 26px rgba(3,24,44,.25);cursor:pointer;z-index:80;opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .3s ease,visibility .3s ease,transform .3s ease,background .3s ease}
+.lu-back-to-top svg{width:20px;height:20px}
+.lu-back-to-top.is-visible{opacity:1;visibility:visible;transform:translateY(0)}
+.lu-back-to-top:hover{background:#0b57e8;transform:translateY(-3px)}
+.lu-back-to-top:active{transform:scale(.95)}
+/* High-quality svg strokes, always aligned to a fixed box */
+.icon,.ico,.lineicon svg,.service-icon svg{shape-rendering:geometricPrecision;stroke-linecap:round;stroke-linejoin:round}
+.faq details[open] summary{color:#0b53be}
+.faq details:hover,.faq-items details:hover{background:rgba(45,116,208,.025)}
+@media(max-width:760px){.lu-back-to-top{width:42px;height:42px;right:14px;bottom:16px}.button:hover,.btn:hover,.booking-next:hover{box-shadow:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.lu-reveal{opacity:1!important;transform:none!important}}
+
+/* Escolas: preservar as quatro artes aprovadas e os hotspots clicáveis */
+.art-hotspot{transition:background-color .25s ease,box-shadow .25s ease;outline-offset:-2px}
+@media(hover:hover){.art-hotspot:hover{background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 2px rgba(255,205,71,.26);border-radius:9px}}
+.school-how article,.school-testimonials article{transition:transform .35s var(--lu-ease),box-shadow .35s ease}
+@media(hover:hover){.school-how article:hover,.school-testimonials article:hover{transform:translateY(-4px);box-shadow:0 20px 30px rgba(8,38,68,.09)}}
+
+
+/* ===== Level UP Premium V4 • qualidade visual + microinterações mais visíveis ===== */
+:root{--lu-glow:0 18px 45px rgba(7,32,64,.12);--lu-blue:#0c55ed;--lu-deep:#072946;--lu-yellow:#ffcf50}
+body{background-attachment:fixed}
+img,.official-logo{backface-visibility:hidden;transform:translateZ(0);image-rendering:auto}
+.approved-art img,.hero-media img,.hero-main img,.hero-side img,.real-photo>img,.case-photo img,.contact-image img,.school-solution-photo img,.school-hero-image{filter:saturate(1.02) contrast(1.01)}
+/* Better icon polish */
+.lineicon,.service-icon,.benefits-grid>div>span:first-child,.benefits-row>div>svg,.benefits-row>div>.ico,.school-service-grid article>div:first-child,.school-test-grid>div>.ico{position:relative;display:inline-grid;place-items:center;isolation:isolate}
+.lineicon::after,.service-icon::after,.school-service-grid article>div:first-child::after,.school-test-grid>div>.ico::after{content:"";position:absolute;inset:-8px;border-radius:14px;background:linear-gradient(180deg,rgba(12,85,237,.08),rgba(12,85,237,.02));border:1px solid rgba(12,85,237,.08);z-index:-1;box-shadow:0 8px 18px rgba(12,85,237,.06)}
+.lineicon svg,.service-icon svg,.benefits-row .ico,.school-service-grid article .ico,.school-test-grid .ico{width:28px;height:28px;stroke-width:1.95}
+/* Top buttons and primary CTA */
+.btn,.button,.booking-next,.booking-back,button[type=submit]{overflow:hidden}
+.btn::before,.button::before,.booking-next::before{content:"";position:absolute;inset:auto;top:0;left:-130%;width:55%;height:100%;background:linear-gradient(110deg,transparent,rgba(255,255,255,.28),transparent);transform:skewX(-22deg);transition:left .68s ease}
+.btn:hover::before,.button:hover::before,.booking-next:hover::before{left:150%}
+.btn-primary,.btn-yellow,.booking-next{box-shadow:0 10px 24px rgba(16,76,181,.16)}
+.btn-primary:hover,.btn-yellow:hover,.booking-next:hover{box-shadow:0 16px 30px rgba(16,76,181,.22)}
+/* Stronger nav and menu motion */
+.nav-links a,.navlinks a{position:relative;transition:color .28s ease,opacity .28s ease,transform .28s ease}
+.nav-links a::after,.navlinks a::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:currentColor;transform:scaleX(0);transform-origin:left center;transition:transform .28s ease;opacity:.75}
+.nav-links a:hover,.navlinks a:hover{transform:translateY(-1px)}
+.nav-links a:hover::after,.navlinks a:hover::after,.nav-links a[aria-current="location"]::after,.navlinks a[aria-current="location"]::after{transform:scaleX(1)}
+/* Card polish */
+.service-card,.solution-card,.step,.issue,.case-proof,.crm-screen,.crm-showcase,.booking-panel,.faq details,.school-service-grid article,.benefits-grid>div,.benefits-row>div,.school-test-grid>div,.real-service-grid article,.case-card,.crm-metrics>div,.crm-col,.crm-ticket,.school-results-band>div{border-color:rgba(11,61,114,.08)!important;box-shadow:0 8px 18px rgba(8,28,54,.04)}
+@media(hover:hover) and (pointer:fine){
+  .benefits-grid>div:hover,.benefits-row>div:hover,.school-test-grid>div:hover,.real-service-grid article:hover,.case-card:hover,.crm-metrics>div:hover,.crm-col:hover,.crm-ticket:hover,.school-results-band>div:hover{transform:translateY(-5px);box-shadow:var(--lu-glow)}
+}
+/* Benefit rows become crisper mini-cards */
+.benefits-grid,.benefits-row{align-items:stretch}
+.benefits-grid>div,.benefits-row>div{background:rgba(255,255,255,.92);border:1px solid rgba(10,50,92,.08);border-radius:18px;padding:16px 18px;min-height:88px;transition:transform .35s var(--lu-ease),box-shadow .35s ease,border-color .35s ease;background-clip:padding-box}
+.real-benefits .benefits-row,.school-benefits .benefits-row,.benefits{border:none!important}
+.school-benefits{background:linear-gradient(180deg,#f7f9fc,#ffffff)}
+.school-benefits .benefits-row{grid-template-columns:repeat(4,1fr);gap:16px;padding:24px 0 28px}
+.school-benefits .benefits-row>div{justify-content:flex-start;align-items:center;border-right:0!important}
+.school-benefits .benefits-row b{font-size:15px;line-height:1.28}
+.school-benefits .benefits-row .ico{width:30px;height:30px}
+/* input/focus quality */
+input,select,textarea{transition:border-color .25s ease,box-shadow .25s ease,transform .25s ease,background-color .25s ease}
+input:hover,select:hover,textarea:hover{border-color:rgba(12,85,237,.25)}
+input:focus,select:focus,textarea:focus{transform:translateY(-1px);box-shadow:0 0 0 4px rgba(12,85,237,.10)}
+/* approved artwork polish */
+.approved-art{overflow:hidden}
+.approved-art img{width:100%;height:auto}
+.official-art-brand img,.official-logo{filter:drop-shadow(0 6px 12px rgba(3,16,35,.08))}
+/* icon floating motion */
+@media(prefers-reduced-motion:no-preference){
+  .lineicon svg,.service-icon svg,.benefits-row .ico,.school-service-grid article .ico,.school-test-grid .ico,.btn .ico,.lu-icon{animation:lu-float 4.2s ease-in-out infinite}
+  .benefits-row>div:nth-child(2) .ico,.benefits-grid>div:nth-child(2) .lineicon svg,.school-service-grid article:nth-child(2) .ico{animation-delay:.35s}
+  .benefits-row>div:nth-child(3) .ico,.benefits-grid>div:nth-child(3) .lineicon svg,.school-service-grid article:nth-child(3) .ico{animation-delay:.7s}
+  .benefits-row>div:nth-child(4) .ico,.school-service-grid article:nth-child(4) .ico{animation-delay:1.05s}
+}
+@keyframes lu-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+/* subtle pulse on prime CTA in header */
+@media(prefers-reduced-motion:no-preference){.nav>.btn,.site-header .btn-yellow{animation:lu-pulse 3.2s ease-in-out infinite}}
+@keyframes lu-pulse{0%,100%{box-shadow:0 10px 24px rgba(16,76,181,.14)}50%{box-shadow:0 14px 34px rgba(16,76,181,.24)}}
+/* better mobile fidelity */
+@media(max-width:900px){
+  .school-benefits .benefits-row{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:560px){
+  .benefits-grid>div,.benefits-row>div{border-radius:15px;padding:14px 14px;min-height:78px}
+  .school-benefits .benefits-row{gap:10px}
+  .school-benefits .benefits-row b{font-size:13px}
+}
+
+
+/* ===== Escolas V5 • hero HTML real, header separado, headline com efeito ===== */
+html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body.theme-school{background:#fff}
+body.theme-school .approved-art{display:none!important}
+body.theme-school>.header,
+body.theme-school .school-hero,
+body.theme-school .school-benefits,
+body.theme-school .school-solution,
+body.theme-school .school-results{display:block!important}
+body.theme-school .header{position:sticky;top:0;z-index:60;background:rgba(4,29,54,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08);box-shadow:0 10px 25px rgba(3,12,28,.14)}
+body.theme-school .header-overlay{position:sticky!important}
+body.theme-school .nav{min-height:82px;display:grid;grid-template-columns:auto 1fr auto;gap:28px;align-items:center}
+body.theme-school .brand-school-official{background:rgba(255,255,255,.98);padding:10px 14px;border-radius:16px;box-shadow:0 10px 30px rgba(5,12,28,.14)}
+body.theme-school .nav-links{justify-self:center;display:flex;gap:34px;padding:13px 18px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08)}
+body.theme-school .nav-links a{color:#fff;font-weight:760;font-size:15px;letter-spacing:-.01em;text-shadow:0 1px 2px rgba(0,0,0,.12)}
+body.theme-school .nav>.btn{justify-self:end;border-radius:16px;padding:15px 24px;font-weight:850}
+body.theme-school .school-hero{min-height:660px;margin-top:-82px;padding-top:82px}
+body.theme-school .school-hero-image{background-image:linear-gradient(90deg,rgba(3,31,59,.92) 0%,rgba(2,41,77,.90) 44%,rgba(5,45,82,.44) 68%,rgba(4,47,87,.10) 100%),url('assets/hero-wide.jpg')!important;background-size:cover!important;background-position:center right!important}
+body.theme-school .school-hero-content{min-height:578px;padding-top:72px;padding-bottom:36px;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:30px}
+body.theme-school .school-hero-copy{max-width:670px}
+body.theme-school .school-hero .eyebrow{font-size:14px;letter-spacing:.22em;text-shadow:0 1px 2px rgba(0,0,0,.18)}
+body.theme-school .school-hero h1{max-width:780px;font-size:clamp(58px,6vw,86px);line-height:.94;letter-spacing:-.065em;color:#fff;text-shadow:0 4px 16px rgba(0,0,0,.16)}
+body.theme-school .school-hero h1 em{color:#ffd04f;font-style:normal}
+body.theme-school .school-hero h1 .line{display:block;overflow:hidden;padding-block:.03em}
+body.theme-school .school-hero h1 .line .inner{display:inline-block;opacity:0;transform:translateY(1.1em);filter:blur(8px)}
+body.theme-school .school-hero p{max-width:610px;font-size:24px;line-height:1.5;color:rgba(255,255,255,.94);text-shadow:0 1px 2px rgba(0,0,0,.18)}
+body.theme-school .school-actions{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:30px}
+body.theme-school .school-actions .btn{position:relative;isolation:isolate;backdrop-filter:blur(2px)}
+body.theme-school .school-actions .btn-primary{padding-inline:24px;min-height:60px;border-radius:18px}
+body.theme-school .school-actions .btn-outline{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.34);color:#fff;padding-inline:24px;min-height:60px;border-radius:18px}
+body.theme-school .school-script{position:relative;right:auto;bottom:auto;margin-right:2.5vw;align-self:center;font-size:clamp(28px,2.6vw,52px);line-height:1.06;letter-spacing:-.035em;text-shadow:0 6px 28px rgba(5,24,45,.26)}
+body.theme-school .school-script span{width:190px}
+body.theme-school .school-benefits{position:relative;margin-top:-24px;z-index:3}
+body.theme-school .school-benefits .container{background:#fff;border-radius:28px;box-shadow:0 18px 45px rgba(7,32,64,.10);padding:20px;max-width:min(1210px,calc(100% - 36px))}
+body.theme-school .school-benefits .benefits-row{padding:0!important}
+body.theme-school .school-benefits .benefits-row>div{min-height:96px;border-radius:20px;background:linear-gradient(180deg,#fff,#f8fbff)}
+body.theme-school .school-benefits .benefits-row b{font-size:17px}
+/* stronger type-in animation */
+body.theme-school.lu-motion-ready .school-hero h1 .line .inner{animation:heroType .9s cubic-bezier(.2,.72,.18,1) forwards;animation-delay:var(--line-delay,0ms)}
+body.theme-school.lu-motion-ready .school-hero p,
+body.theme-school.lu-motion-ready .school-actions,
+body.theme-school.lu-motion-ready .school-script{opacity:0;transform:translateY(24px);animation:heroFade .8s ease forwards;animation-delay:950ms}
+body.theme-school.lu-motion-ready .school-script{animation-delay:1120ms}
+@keyframes heroType{0%{opacity:0;transform:translateY(1.1em);filter:blur(8px)}100%{opacity:1;transform:translateY(0);filter:blur(0)}}
+@keyframes heroFade{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+/* ensure no blurry transform on header text */
+body.theme-school .nav-links a,body.theme-school .btn,body.theme-school h1,body.theme-school p,body.theme-school b{transform:translateZ(0)}
+@media(max-width:1180px){
+ body.theme-school .nav{grid-template-columns:auto 1fr auto;gap:18px}
+ body.theme-school .nav-links{gap:20px;padding:12px 16px}
+ body.theme-school .school-hero h1{font-size:clamp(52px,5.8vw,74px)}
+ body.theme-school .school-hero p{font-size:20px;max-width:530px}
+ body.theme-school .school-script{font-size:clamp(24px,2.5vw,40px);margin-right:1vw}
+}
+@media(max-width:980px){
+ body.theme-school .nav{grid-template-columns:auto auto;justify-content:space-between}
+ body.theme-school .nav-links{order:3;grid-column:1/-1;justify-self:stretch;justify-content:center;flex-wrap:wrap}
+ body.theme-school .school-hero{margin-top:-82px;padding-top:82px;min-height:720px}
+ body.theme-school .school-hero-content{grid-template-columns:1fr;gap:18px;padding-top:56px}
+ body.theme-school .school-script{margin-right:0;max-width:260px}
+}
+@media(max-width:760px){
+ body.theme-school .nav{display:flex;flex-wrap:wrap;align-items:center;gap:16px;min-height:76px}
+ body.theme-school .brand-school-official{padding:8px 12px;border-radius:14px}
+ body.theme-school .nav>.btn{margin-left:auto}
+ body.theme-school .nav-links{padding:11px 13px;border-radius:20px;gap:14px;overflow-x:auto;justify-content:flex-start;width:100%}
+ body.theme-school .school-hero{min-height:650px}
+ body.theme-school .school-hero-content{padding-top:44px;padding-bottom:28px}
+ body.theme-school .school-hero h1{font-size:clamp(42px,11vw,58px);line-height:.98}
+ body.theme-school .school-hero p{font-size:17px;max-width:420px}
+ body.theme-school .school-actions .btn{width:100%;justify-content:center}
+ body.theme-school .school-script{display:none}
+ body.theme-school .school-benefits .container{padding:12px;border-radius:20px;max-width:min(96vw,calc(100% - 24px))}
+}
+
+
+/* V6 (correção solicitada): restaurar todas as artes aprovadas fora do hero. */
+/* Mantém APENAS a primeira dobra reconstruída em HTML e a fotografia original da menina. */
+body.theme-school .approved-art.art-hero{display:none!important}
+@media(min-width:1100px){
+  body.theme-school .approved-art.art-solution,
+  body.theme-school .approved-art.art-results,
+  body.theme-school .approved-art.art-cta{display:block!important}
+  body.theme-school .school-solution,
+  body.theme-school .school-results,
+  body.theme-school .school-contact .school-cta{display:none!important}
+}
+@media(max-width:1099px){
+  /* No celular, restaurar a mesma estrutura responsiva anterior à alteração. */
+  body.theme-school .approved-art.art-solution,
+  body.theme-school .approved-art.art-results,
+  body.theme-school .approved-art.art-cta{display:none!important}
+  body.theme-school .school-solution{display:grid!important}
+  body.theme-school .school-results{display:block!important}
+  body.theme-school .school-contact .school-cta{display:flex!important}
+}
+@media(max-width:760px){body.theme-school .school-solution{display:flex!important}}
+
+/* Frase: escrita independente e nítida, junto à menina sem cobrir rosto ou sair do banner. */
+body.theme-school .school-hero-content{position:relative}
+body.theme-school .school-script{
+  position:absolute!important;
+  left:62.2%!important;
+  top:32%!important;
+  right:auto!important;
+  bottom:auto!important;
+  margin:0!important;
+  width:175px;
+  z-index:4;
+  align-self:auto;
+  font:italic 30px/1.1 Georgia,Times,serif;
+  letter-spacing:-.018em;
+  color:#fff;
+  text-shadow:0 3px 10px #06172c99;
+  opacity:1!important;
+  display:block!important;
+  transform:none!important;
+  animation:none!important;
+  overflow:visible;
+}
+body.theme-school .school-script .school-script-line{
+  position:relative;display:block;width:max-content;max-width:none;
+  height:auto!important;margin:0!important;padding:0;background:transparent!important;
+  overflow:hidden;white-space:nowrap;
+  clip-path:inset(0 100% 0 0);
+  border:0;
+  transform:none;
+  animation:school-line-write .72s steps(14,end) forwards;
+  animation-delay:var(--write-delay,1s);
+}
+body.theme-school .school-script .school-script-line:nth-child(1){--write-delay:1.05s}
+body.theme-school .school-script .school-script-line:nth-child(2){--write-delay:1.84s}
+body.theme-school .school-script .school-script-line:nth-child(3){--write-delay:2.63s}
+body.theme-school .school-script .school-script-line:nth-child(4){--write-delay:3.42s}
+body.theme-school .school-script .school-script-underline{
+  display:block;position:relative;width:170px;height:3px;margin:15px 0 0 0;
+  border:0;border-radius:3px;background:#ffce4a;
+  transform-origin:left center;transform:scaleX(0);
+  animation:school-underline-write .55s ease forwards;animation-delay:4.15s;
+}
+@keyframes school-line-write{to{clip-path:inset(0 0 0 0)}}
+@keyframes school-underline-write{to{transform:scaleX(1)}}
+@media (max-width:1280px){body.theme-school .school-script{left:61.7%!important;font-size:25px;width:150px}}
+@media (max-width:980px){body.theme-school .school-script{display:none!important}}
+@media (prefers-reduced-motion:reduce){
+  body.theme-school .school-script .school-script-line{clip-path:none!important;animation:none!important}
+  body.theme-school .school-script .school-script-underline{transform:scaleX(1)!important;animation:none!important}
+}
+
+
+/* LEVEL UP Escolas V7 — elementos realmente independentes das artes */
+body.theme-school .header,
+body.theme-school .header.header-overlay{height:86px!important;min-height:86px!important;position:sticky!important;top:0!important;left:auto!important;right:auto!important;z-index:80!important;background:#061f39!important;border-bottom:1px solid rgba(255,255,255,.12)!important;box-shadow:0 6px 20px rgba(3,15,30,.12)!important;overflow:visible!important}
+body.theme-school .header .nav{height:86px!important;min-height:86px!important;align-items:center!important}
+body.theme-school .brand-school-official{height:64px!important;min-height:64px!important;width:128px!important;min-width:128px!important;display:flex!important;justify-content:center!important;align-items:center!important;align-self:center!important;flex:none;padding:3px 9px!important;border-radius:12px!important;overflow:hidden!important;box-shadow:0 3px 12px rgba(0,0,0,.12)!important}
+body.theme-school .brand-school-official .official-logo{display:block!important;width:108px!important;height:57px!important;max-height:57px!important;max-width:108px!important;object-fit:contain!important}
+body.theme-school .nav-links{background:rgba(255,255,255,.07)!important}
+body.theme-school .header .btn{min-height:46px!important;align-self:center!important;max-height:52px!important}
+body.theme-school .school-hero{margin:0!important;padding:0!important;height:630px!important;min-height:630px!important;overflow:hidden!important;position:relative!important}
+body.theme-school .school-hero-image{background-size:cover!important;background-position:center top!important;transform:none!important}
+body.theme-school .school-hero-content{min-height:630px!important;height:630px!important;padding-top:48px!important;padding-bottom:44px!important;box-sizing:border-box!important;align-items:center!important}
+body.theme-school .school-hero-copy{align-self:center!important}
+body.theme-school .school-hero h1{font-size:clamp(52px,5.55vw,80px)!important}
+body.theme-school .school-hero p{font-size:clamp(17px,1.4vw,21px)!important;line-height:1.48!important;max-width:520px!important}
+body.theme-school .school-script{left:59%!important;top:30%!important;font-size:clamp(25px,2.2vw,34px)!important}
+body.theme-school .school-benefits{margin-top:0!important;background:#fff!important;padding:12px 0 22px!important;z-index:2!important}
+body.theme-school .school-benefits .container{max-width:min(1160px,calc(100% - 48px))!important;background:#fff!important;padding:8px 0!important;box-shadow:none!important;border-radius:0!important}
+body.theme-school .school-benefits .benefits-row{gap:12px!important}
+body.theme-school .school-benefits .benefits-row>div{background:#f8fbff!important;box-shadow:0 5px 20px rgba(6,30,54,.045)!important;min-height:88px!important;padding:14px!important;border-radius:13px!important;min-width:0}
+body.theme-school .school-benefits .benefits-row b{font-size:14px!important}
+body.theme-school .school-benefits .benefits-row .ico{width:25px!important;height:25px!important}
+/* Recreate the approved call-to-action as actual HTML, not an image hotspot. */
+body.theme-school .approved-art.art-solution,
+body.theme-school .approved-art.art-results,
+body.theme-school .approved-art.art-cta{isolation:isolate}
+body.theme-school .lu-art-blank{position:absolute;pointer-events:none;z-index:2}
+body.theme-school .lu-art-blank-solution{left:48.4%;top:67%;width:27.4%;height:18%;background:linear-gradient(120deg,#052749 0%,#052749 72%,#052846 100%);border-radius:9px}
+body.theme-school .lu-art-link{display:flex;align-items:center;justify-content:center;gap:14px;position:absolute;z-index:4;text-decoration:none;line-height:1.24;text-align:center;font-family:Inter,Arial,sans-serif;font-weight:850;letter-spacing:-.025em;will-change:transform;transition:transform .32s cubic-bezier(.2,.7,.25,1),box-shadow .32s ease,background .32s ease,filter .32s ease;border-radius:15px;isolation:isolate;overflow:hidden}
+body.theme-school .lu-art-link svg{width:clamp(18px,1.6vw,27px);height:clamp(18px,1.6vw,27px);flex:0 0 auto;transition:transform .28s ease}
+body.theme-school .lu-art-link:hover{transform:translateY(-5px);filter:saturate(1.08)}
+body.theme-school .lu-art-link:hover svg{transform:translateX(5px)}
+body.theme-school .lu-art-link:focus-visible{outline:4px solid #fff;outline-offset:3px}
+body.theme-school .lu-art-solution-button{left:51.3%;top:71.4%;width:22%;height:10.7%;padding:6px 12px;font-size:clamp(12px,1.48vw,22px);color:#082b49;background:linear-gradient(#ffdc69,#ffcb3e);box-shadow:0 10px 28px rgba(0,0,0,.20)}
+body.theme-school .lu-art-solution-button:hover{box-shadow:0 16px 30px rgba(0,0,0,.26)}
+/* Independently rendered results, masking the original image-only infographic */
+body.theme-school .lu-results-bar{position:absolute;z-index:4;left:3.8%;top:65.2%;width:62%;height:18.6%;border:1px solid rgba(180,217,250,.33);border-radius:19px;background:linear-gradient(102deg,#05294c 0%,#052744 55%,#062e50 100%);box-shadow:0 10px 26px rgba(0,0,0,.11);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:stretch;padding:8px 12px;gap:0;color:#fff;}
+body.theme-school .lu-results-item{display:flex;align-items:center;justify-content:center;gap:12px;min-width:0;padding:2px 10px;border-right:1px solid rgba(255,255,255,.28);transition:transform .32s ease,background-color .32s ease;border-radius:10px}
+body.theme-school .lu-results-item:last-child{border-right:0}
+body.theme-school .lu-results-item:hover{transform:translateY(-4px);background:rgba(255,255,255,.07)}
+body.theme-school .lu-results-icon{flex:0 0 auto;color:#ffd04a;display:flex;align-items:center;justify-content:center}
+body.theme-school .lu-results-icon svg{width:clamp(20px,2vw,34px);height:clamp(20px,2vw,34px)}
+body.theme-school .lu-results-item strong{display:block;font-size:clamp(11px,1.17vw,18px);line-height:1.2;white-space:nowrap;font-weight:800}
+body.theme-school .lu-results-item small{display:block;font-size:clamp(9px,.85vw,14px);line-height:1.27;margin-top:5px;color:#d0ddeb}
+/* Two HTML CTAs; the blue panel conceals only old raster buttons. */
+body.theme-school .lu-art-cta-panel{position:absolute;z-index:4;left:58%;top:40%;width:36%;height:34%;padding:16px;border-radius:18px;background:linear-gradient(120deg,rgba(6,37,70,.985),rgba(7,44,81,.97));border:1px solid rgba(255,255,255,.17);box-shadow:0 14px 34px rgba(3,13,30,.22);display:flex;flex-direction:column;gap:14px;justify-content:center;}
+body.theme-school .lu-art-cta-panel .lu-art-link{position:relative;width:100%;height:48%;min-height:0;top:auto;left:auto;padding:9px 12px;white-space:nowrap;font-size:clamp(12px,1.35vw,22px);}
+body.theme-school .lu-art-cta-primary{color:#092b48;background:linear-gradient(180deg,#ffdc68,#ffcb3f);box-shadow:0 12px 18px rgba(0,0,0,.1)}
+body.theme-school .lu-art-cta-secondary{color:#fff;background:rgba(5,29,53,.4);border:2px solid rgba(255,255,255,.78)}
+body.theme-school .lu-art-cta-secondary:hover{background:rgba(255,255,255,.10)}
+@media(max-width:1350px){
+ body.theme-school .lu-art-cta-panel{left:57%;width:38%;top:39%;height:36%;gap:10px;padding:12px}
+ body.theme-school .lu-results-bar{left:3.5%;width:64%;}
+ body.theme-school .lu-results-item{gap:8px;padding-inline:6px}
+ body.theme-school .lu-results-item strong{font-size:12px}
+ body.theme-school .lu-results-item small{font-size:10px}
+}
+@media(max-width:1099px){
+ body.theme-school .school-hero{height:auto!important;min-height:625px!important}
+ body.theme-school .school-hero-content{height:auto!important;min-height:625px!important}
+ body.theme-school .school-hero-image{background-position:63% top!important}
+ body.theme-school .nav-links{background:#fff!important}
+ body.theme-school .header-overlay .nav-links a{color:#082b46!important}
+ body.theme-school .school-script{display:none!important}
+ body.theme-school .lu-art-cta-panel,body.theme-school .lu-art-blank,body.theme-school .lu-results-bar{display:none!important}
+}
+@media(max-width:760px){
+ body.theme-school .header,body.theme-school .header.header-overlay{height:76px!important;min-height:76px!important}
+ body.theme-school .header .nav{height:76px!important;min-height:76px!important;display:flex!important;flex-wrap:nowrap!important}
+ body.theme-school .brand-school-official{height:56px!important;min-height:56px!important;width:112px!important;min-width:112px!important}
+ body.theme-school .brand-school-official .official-logo{width:96px!important;height:47px!important;max-height:47px!important}
+ body.theme-school .nav-links{display:none!important;position:absolute!important;top:76px!important;left:10px!important;right:10px!important;max-width:none!important;border-radius:12px!important;padding:18px!important;box-shadow:0 20px 36px rgba(0,15,35,.2)!important}
+ body.theme-school .nav-links.open{display:flex!important;flex-direction:column!important}
+ body.theme-school .nav .menu-toggle{display:block!important;order:3;margin-left:auto;color:#fff!important}
+ body.theme-school .nav>.btn{display:none!important}
+ body.theme-school .school-hero{min-height:600px!important}
+ body.theme-school .school-hero-content{min-height:600px!important;padding-top:40px!important;padding-bottom:28px!important}
+ body.theme-school .school-hero h1{font-size:clamp(40px,10vw,58px)!important}
+ body.theme-school .school-hero p{font-size:15px!important}
+ body.theme-school .school-benefits .container{max-width:calc(100% - 24px)!important}
+ body.theme-school .school-benefits .benefits-row{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+ body.theme-school .school-benefits .benefits-row>div{min-height:75px!important;padding:10px!important}
+ body.theme-school .school-benefits .benefits-row b{font-size:11px!important}
+}
+@media(prefers-reduced-motion:reduce){body.theme-school .lu-art-link,body.theme-school .lu-results-item{transition:none!important}}
+/* Final visual fit: no visible ghost of the original buttons or infographic */
+@media(min-width:1100px){
+  body.theme-school .lu-art-blank-solution{
+    left:48.8%;top:67.2%;width:23.1%;height:12.5%;border-radius:11px;
+    background:linear-gradient(100deg,#012852 0%,#032746 100%);
+  }
+  body.theme-school .lu-art-solution-button{
+    left:49.05%;top:67.9%;width:22.6%;height:11.3%;
+  }
+  body.theme-school .lu-results-bar{
+    left:3.7%;top:65.1%;width:62.1%;height:22.3%;
+    background:linear-gradient(105deg,#052b51 0%,#052844 55%,#063153 100%);
+  }
+  body.theme-school .lu-art-cta-panel{
+    left:56.6%;top:38.5%;width:39.6%;height:37.6%;
+    background:#062846;
+    border-color:rgba(255,255,255,.20);
+  }
+}
+
+
+/* V8 fix: hide the raster button from the solution artwork and keep only the HTML CTA */
+@media(min-width:1100px){
+  body.theme-school .lu-art-blank-solution{
+    display:block!important;
+    left:47.6%!important;
+    top:65.8%!important;
+    width:30.6%!important;
+    height:17.6%!important;
+    border-radius:18px!important;
+    background:linear-gradient(105deg,#04284a 0%,#052947 58%,#052743 100%)!important;
+    box-shadow:none!important;
+    z-index:3!important;
+  }
+  body.theme-school .lu-art-solution-button{
+    left:50.2%!important;
+    top:69.0%!important;
+    width:24.5%!important;
+    height:10.8%!important;
+    z-index:5!important;
+  }
+}
+
+
+/* V9 fix: conceal only the residual raster stripe from the solution artwork,
+   without covering the paragraph. Keep the HTML CTA as the only visible button. */
+@media(min-width:1100px){
+  body.theme-school .lu-art-blank-solution{
+    display:block!important;
+    left:50.1%!important;
+    top:68.0%!important;
+    width:24.9%!important;
+    height:3.8%!important;
+    border-radius:14px!important;
+    background:linear-gradient(90deg,#062845 0%,#062847 60%,#082d4e 100%)!important;
+    box-shadow:none!important;
+    z-index:4!important;
+  }
+  body.theme-school .lu-art-solution-button{
+    left:50.15%!important;
+    top:68.2%!important;
+    width:24.3%!important;
+    height:10.9%!important;
+    z-index:5!important;
+  }
+}
+@media(max-width:1099px){
+  body.theme-school .lu-art-blank-solution{
+    display:none!important;
+  }
+}
+
+
+/* V10: botão anterior eliminado diretamente do arquivo solucao-arte.png.
+   Não utilizar nenhuma camada de cobertura que prejudique a copy. */
+body.theme-school .lu-art-blank-solution{display:none!important}
+@media (min-width:1100px){
+  body.theme-school .lu-art-solution-button{
+    left:50.05%!important;
+    top:71.6%!important;
+    width:23.1%!important;
+    height:10.7%!important;
+    min-width:0!important;
+    z-index:5!important;
+    background:linear-gradient(180deg,#ffdd6a 0%,#ffca3b 100%)!important;
+    border-radius:17px!important;
+    box-shadow:0 13px 28px rgba(0,0,0,.15)!important;
+  }
+}

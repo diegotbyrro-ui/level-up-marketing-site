@@ -1,0 +1,2 @@
+Atualizações: numeração removida dos 3 cards de Como funciona; novo agendamento em 2 etapas.
+O agendamento é demonstrativo até informar window.LEVELUP_WHATSAPP_NUMBER no script.js ou conectar a um CRM. Nenhum horário representa disponibilidade real; reunião somente após confirmação.

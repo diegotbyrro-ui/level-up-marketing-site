@@ -1,0 +1,7 @@
+LEVEL UP IMOBILIÁRIAS — V5 INTERATIVA
+
+Abra index.html no navegador.
+Botões de chamada levam ao painel de agendamento.
+Escolha dia e horário na etapa 1, informe dados na etapa 2.
+IMPORTANTE: formulário de demonstração local. Não há envio de leads, confirmação de disponibilidade ou integração de agenda.
+Substituir imagens ilustrativas e validar dados comerciais antes da publicação.

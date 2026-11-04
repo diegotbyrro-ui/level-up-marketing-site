@@ -1,0 +1,9 @@
+LEVEL UP ESCOLAS V6 — NOVO AGENDAMENTO
+
+Abra index.html no navegador.
+
+O formulário usa duas etapas: escolha de dia/horário e dados do contato.
+Datas e horários são preferências, não disponibilidade real.
+Esta é uma demonstração local: os dados não são enviados.
+Para produção, integrar a API de agenda/CRM ou um servidor de atendimento.
+As outras seções e as quatro artes da V5 foram preservadas.
